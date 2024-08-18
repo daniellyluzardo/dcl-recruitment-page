@@ -1,10 +1,6 @@
 # dcl-recruitment-page
 This framework is going to give coverage for different features of the web application of recruitment-page
 
-# Git clone repository
-git clone https://github.com/daniellyluzardo/dcl-recruitment-page.git
-git init
-
 # to run all test spec run playwright will start the web server automatically.
 npm run test
 
@@ -32,3 +28,16 @@ npm run test
 * Install NodeJS
 * Install Mocha
 * Install Jest
+
+# Opening the project
+clone repo on git clone https://github.com/daniellyluzardo/dcl-recruitment-page.git
+git init
+
+# Opening the project
+### Using NPM
+
+- Run `npm i` to install the project dependencies
+
+### Using Yarn
+
+- Run `yarn` to install the project dependencies
