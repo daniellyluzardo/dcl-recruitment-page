@@ -6,8 +6,8 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.recruitButtonMenu = page.locator('[role="presentation"]');
-        this.addCandidate = page.locator('[type=button]').getByAltText('+');
+        this.recruitButtonMenu = page.getByRole('link', { name: 'Recruitment' });
+        this.addCandidate = page.getByRole('button', { name: ' Add' })
         // await expect(todoCount).toContainText('3');
 
     }
@@ -19,8 +19,5 @@ export class HomePage {
         await expect(this.recruitButtonMenu).toBeVisible();
         await this.recruitButtonMenu.click();
     }
-    async clickAddCandidates(){
-        await expect(this.addCandidate).toBeVisible();
-        await this.addCandidate.click();
-    }
+
 }

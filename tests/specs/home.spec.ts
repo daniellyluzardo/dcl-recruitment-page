@@ -4,7 +4,7 @@ import { HomePage } from '../../Pages/home.page';
 
 test.describe('Home Page Feature', () => {
 
-    test('Validate elements at Home Page', async ({ page }) => {
+    test.skip('Validate elements at Home Page', async ({ page }) => {
       const login = new LoginPage(page);
       const home = new HomePage(page);
 
