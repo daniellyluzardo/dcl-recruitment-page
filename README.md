@@ -10,7 +10,6 @@ npm run test
   * Opening the project
   * Installing dependencies and tools
   * Manual installation of dependencies
-  * Project env variables
 
 * Project execution guide
     * Run the tests
@@ -41,3 +40,21 @@ git init
 ### Using Yarn
 
 - Run `yarn` to install the project dependencies
+
+### Manual installation of dependencies:
+If the `npm install` command is not working you can follow this step to install all the dependencies manually:
+* Install playwright: `npm init playwright@latest`
+* Install allure-command line tools `npm install @wdio/allure-reporter --save-dev` and `npm install -g allure-commandline --save-dev`
+* Install dotenv using: `npm i dotenv`
+
+## Project Execution
+---------------------
+
+### Run the tests
+* To run tests locally you can use: `npx playwright test`
+
+## Reports
+---------------------
+After running `npm run test` a folder named `allure-results` will be generated so to generate report you need to follow:
+* To generate the reports use int terminal: `allure generate allure-results --clean`
+* To open the reports you can run in terminal: `allure open`
