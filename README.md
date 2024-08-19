@@ -44,7 +44,7 @@ git init
 ### Manual installation of dependencies:
 If the `npm install` command is not working you can follow this step to install all the dependencies manually:
 * Install playwright: `npm init playwright@latest`
-* Install allure-command line tools `npm install @wdio/allure-reporter --save-dev` and `npm install -g allure-commandline --save-dev`
+* Install allure-command line tools `npm install @wdio/allure-reporter --save-dev` and `npm install -g allure-commandline --save-dev` and `npm install --save-dev allure-playwright`
 * Install dotenv using: `npm i dotenv`
 
 ## Project Execution
