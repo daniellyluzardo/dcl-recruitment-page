@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../Pages/login.page';
 import { HomePage } from '../../Pages/home.page';
 
-test.describe.only('Recruitment Feature', () => {
+test.describe('Recruitment Feature', () => {
 
     test('Validate elements at Recruitment Page', async ({ page }) => {
       const login = new LoginPage(page);
@@ -22,7 +22,7 @@ test.describe.only('Recruitment Feature', () => {
         await login.gotoLoginUrl();
         await login.login("Admin","admin123");
         await home.clickRecruitmentMenu();
-        await home.clickRAddCandidates();
+        await home.clickAddCandidates();
   
       });
 });

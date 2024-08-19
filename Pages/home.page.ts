@@ -19,7 +19,7 @@ export class HomePage {
         await expect(this.recruitButtonMenu).toBeVisible();
         await this.recruitButtonMenu.click();
     }
-    async clickRAddCandidates(){
+    async clickAddCandidates(){
         await expect(this.addCandidate).toBeVisible();
         await this.addCandidate.click();
     }

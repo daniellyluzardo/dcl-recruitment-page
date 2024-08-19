@@ -9,8 +9,8 @@ test.describe('Authentication', () => {
     await login.loginButton.isVisible();
   });
 
-  test('Login - Succesfully login', async ({ page }) => {
-    //Entering page from recruitment
+  test.only('Login - Succesfully login', async ({ page }) => {
+    //After succesffully logged in, it validates if dashboard page is displayed
     const login = new LoginPage(page);
     await login.gotoLoginUrl();
     await login.login("Admin","admin123");
