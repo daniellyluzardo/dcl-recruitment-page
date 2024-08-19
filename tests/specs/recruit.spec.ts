@@ -11,6 +11,8 @@ test.describe('Recruitment Feature', () => {
   const lastname = "Smith"
   const email = "email@email.com"
   const phone = "(999) 999-9999"
+  const vacancyQA = 'Senior QA Lead'
+  const vacancySE = 'Software Engineer'
 
   test.skip('Validate elements at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
@@ -33,7 +35,9 @@ test.describe('Recruitment Feature', () => {
     await home.clickRecruitmentMenu();
     await recruitment.clickAddCandidates();
     await recruitment.fillCandidateName(firstname,midname, lastname);
-    await recruitment.fillVacancy('Senior QA Lead');
+    await expect(page.getByText('Vacancy-- Select --')).toBeVisible();
+    await page.getByText('Vacancy-- Select --').click();
+    await recruitment.fillVacancy(vacancyQA);
     await recruitment.fillEmail(email);
     await recruitment.fillContactNmbr(phone);
     // await recruitment.clickUploadResume();
@@ -48,8 +52,8 @@ test.describe('Recruitment Feature', () => {
     // await recruitment.fillDate("2024-12-08");
     await recruitment.fillNotes("Thank you for the opportunity to be considered for this role. I'm excited about the possibility to contribute and grow with your team.");
     // await recruitment.markConsent();
-    await recruitment.clickSave();
-    await recruitment.validateSuccessMessage();
+    await recruitment.clickSaveButton();
+    await recruitment.validateSuccessSaveMessage();
     await page.waitForTimeout(3000);
 
   });
@@ -62,20 +66,33 @@ test.describe('Recruitment Feature', () => {
 
     await login.gotoLoginUrl();
     await login.login("Admin", "admin123");
+    await page.waitForTimeout(3000);
     await home.clickRecruitmentMenu();
     await expect(page.locator('div').filter({ hasText: /^Vacancy-- Select --$/ }).first()).toBeVisible();
     await page.locator('div').filter({ hasText: /^Vacancy-- Select --$/ }).first().click();
-    await expect(page.getByRole('option', { name: 'Senior QA Lead' })).toBeVisible();
-    await page.getByRole('option', { name: 'Senior QA Lead' }).click();
+    // await expect(page.locator('div').filter({ hasText: vacancyQA }).nth(3)).toBeVisible();
+    // await page.locator('div').filter({ hasText: vacancyQA }).nth(3).click();
+    // await expect(page.getByRole('option', { name: vacancyQA })).toBeVisible();
+    // await page.getByRole('option', { name: vacancyQA }).click();
+    await recruitment.fillVacancy(vacancyQA);
     await recruitment.searchForCandidate(firstname);
     await page.getByRole('option', { name: fullname }).first().click();
     await recruitment.clickSearch();
-    await page.getByRole('cell', { name: fullname , exact: true }).locator('[type="button"]').click();
-    await recruitment.validateCandidateSearch(fullname, 'Senior QA Lead');
+    await page.waitForTimeout(3000);
+    await expect(page.locator('.orangehrm-container')).toBeVisible();
+    await page.locator('.orangehrm-container').locator('[type="button"]').first().click();
+    await recruitment.validateCandidateSearch(fullname, vacancyQA);
     await recruitment.editCandidate();
     await recruitment.fillCandidateName(firstname+Date.now(),midname+Date.now(),lastname+Date.now());
-    await recruitment.fillVacancy('Software Engineer');
-    await recruitment.clickSave();
+    await expect(page.getByText(vacancyQA).nth(1)).toBeVisible();
+    await page.getByText(vacancyQA).nth(1).click();
+    // await expect(page.locator('div').filter({ hasText: vacancyQA }).nth(3)).toBeVisible();
+    // await page.locator('div').filter({ hasText: vacancyQA }).nth(3).click();
+    await recruitment.fillVacancy(vacancySE);
+    await recruitment.clickSaveButton();
+    await recruitment.clickConfirmEditButton();
+    await recruitment.validateSuccessEditMessage();
+    await page.waitForTimeout(3000);
 
   });
 });

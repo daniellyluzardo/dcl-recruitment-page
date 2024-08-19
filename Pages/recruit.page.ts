@@ -19,8 +19,10 @@ export class RecruitPage {
     readonly candNameSearchbox: Locator;
     readonly candSearchButton: Locator;
     readonly successAddCandMessage: Locator;
+    readonly successEditCandMessage: Locator;
     readonly clickEdit: Locator;
     readonly header1: Locator;
+    readonly confirmButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -46,6 +48,9 @@ export class RecruitPage {
         this.successAddCandMessage = page.getByText('SuccessSuccessfully Saved×');
         this.clickEdit = page.locator('label').filter({ hasText: 'Edit' }).locator('span');
         this.header1 = page.getByRole('heading', { name: 'Application Stage' });
+        this.confirmButton = page.getByRole('button', { name: 'Yes, Confirm' });
+        this.successEditCandMessage = page.getByText('SuccessSuccessfully Updated×');
+
 
     }
     async clickAddCandidates() {
@@ -64,9 +69,9 @@ export class RecruitPage {
         await expect(this.email).toBeVisible();
         await this.email.fill(email);
     }
-    async fillVacancy(vacancy:string){
-        await expect(this.page.locator('form i').first()).toBeVisible();
-        await this.page.locator('form i').first().click();
+    async fillVacancy(vacancy: string) {
+        // await expect(this.page.getByText('Vacancy-- Select --')).toBeVisible();
+        // await this.page.getByText('Vacancy-- Select --').click();
         await expect(this.page.getByRole('option', { name: vacancy })).toBeVisible();
         await this.page.getByRole('option', { name: vacancy }).click();
     }
@@ -94,9 +99,13 @@ export class RecruitPage {
         await expect(this.consentCB).toBeVisible();
         await this.consentCB.setChecked(true);
     }
-    async clickSave() {
+    async clickSaveButton() {
         await expect(this.saveButton).toBeVisible();
         await this.saveButton.click();
+    }
+    async clickConfirmEditButton() {
+        await expect(this.confirmButton).toBeVisible();
+        await this.confirmButton.click();
     }
     async searchForCandidate(candidate: string) {
         await expect(this.candNameSearchbox).toBeVisible();
@@ -106,16 +115,19 @@ export class RecruitPage {
         await expect(this.candSearchButton).toBeVisible();
         await this.candSearchButton.click();
     }
-    async validateSuccessMessage() {
+    async validateSuccessSaveMessage() {
         await expect(this.successAddCandMessage).toBeVisible();
     }
-    async validateCandidateSearch(name:string, vacancy:string) {
+    async validateSuccessEditMessage() {
+        await expect(this.successEditCandMessage).toBeVisible();
+    }
+    async validateCandidateSearch(name: string, vacancy: string) {
         await expect(this.header1).toBeVisible();
         this.page.getByText(name, { exact: true });
         this.page.getByText(vacancy, { exact: true });
 
     }
-    async editCandidate(){
+    async editCandidate() {
         await expect(this.clickEdit).toBeVisible();
         await this.clickEdit.setChecked(true);
     }
