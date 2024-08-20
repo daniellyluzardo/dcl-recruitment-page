@@ -9,6 +9,7 @@ This framework is going to give coverage for different features of the web appli
 * Edit candidate at Recruitment Page:
       * * Im considering, in this scenario, any candidate created by add a new candidate feature, since its necessary to run those independently as sometimes one browser will run in random order, it is difficult to assure that the immediate previous scenario will be edited, to achieve this goal, it would be a E2E test, validating also the API calls before running each scenario. Also Ive noticed that sometimes the candidate that was recently added was not displayed in the search to edit it, so to investigate this and prevent fails, I would have to check on API to see if the candidate was added to the database correctly.
 * Set user as recruiter (TBD since it is not in the scope)
+* Also it could be possible to force cookies to always runs in en_us, adding "ZWs3TwZKMQ7IEEFBrjJOSwRM4nXcQgsOPZKkNJnMS5o=" in await browserContext.addCookies([cookieObject1, cookieObject2]), to both key and value, this would change the .json file in https://opensource-demo.orangehrmlive.com/web/index.php/core/i18n/messages to english, or inject the call on localization request url on https://opensource-demo.orangehrmlive.com/web/index.php/api/v2/admin/localization to change language {"data":{"language":"fr","dateFormat":"Y-d-m"},"meta":[],"rels":[]}.
 
 * Project description
 * Project Setup
@@ -58,8 +59,10 @@ If the `npm install` command is not working you can follow this step to install 
 ---------------------
 
 ### Run the tests
+* Always check if your playwright.config.ts file is set to run: testDir: './tests',
 * To run tests locally you can use: `npx playwright test`
 * To run tests locally and generate reports, you can use: `npx playwright test --reporter=line,allure-playwright`
+* To run tests with a specific browser or debugging, you can use tags such as `npx playwright test --project=chromium --debug --headed` IE. `--project=MicrosoftEdge`
 
 ### Paralelism
 * Due the nature of some tests, Ive decided to set workers to 1 at time to be able to run separatedly on each browser with less errors, you can check this worker setup on `playwright.config.ts`
