@@ -25,7 +25,7 @@ test.describe('Recruitment Feature', () => {
 
   });
 
-  test('Add a new candidate at Recruitment Page', async ({ page }) => {
+  test.only('Add a new candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
@@ -46,11 +46,9 @@ test.describe('Recruitment Feature', () => {
     const fileChooserPromise = page.waitForEvent('filechooser');
     await recruitment.clickUploadResume();
     const fileChooser = await fileChooserPromise;
-    await fileChooser.setFiles(path.join(process.cwd(), 'tests/utils/resume.docx'));
+    await fileChooser.setFiles('tests/utils/resume.docx');
     await page.getByPlaceholder('Enter comma seperated words...').fill("QA, IT, lead");
-    await recruitment.clickDate();
-    await recruitment.clickTodayDate();
-    // await recruitment.fillDate("2024-12-08");
+    await recruitment.selectDate('2024-07-12');
     await recruitment.fillNotes("Thank you for the opportunity to be considered for this role. I'm excited about the possibility to contribute and grow with your team.");
     // await recruitment.markConsent();
     await recruitment.clickSaveButton();
@@ -60,7 +58,7 @@ test.describe('Recruitment Feature', () => {
 
   });
 
-  test('Edit candidate at Recruitment Page', async ({ page }) => {
+  test.only('Edit candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
@@ -85,6 +83,8 @@ test.describe('Recruitment Feature', () => {
     await expect(page.getByText(vacancyQA).nth(1)).toBeVisible();
     await page.getByText(vacancyQA).nth(1).click();
     await recruitment.fillVacancy(vacancySE);
+    await recruitment.clickDate();
+    await recruitment.clickTodayDate();
     await recruitment.clickSaveButton();
     await recruitment.clickConfirmEditButton();
     await recruitment.validateSuccessEditMessage();

@@ -74,6 +74,7 @@ If the `npm install` command is not working you can follow this step to install 
 After running `npx playwright test --reporter=line,allure-playwright` a folder named `allure-results` will be generated so to generate report you need to follow:
 * To generate the reports use int terminal: `allure generate allure-results --clean`
 * To open the reports you can run in terminal: `allure open ./allure-report`
+* You can also use HTML report that is default to playwright on: `npx playwright show-report`
 
 ## Git Documentation
 * 📚 To have more detailed information on allure, check: https://github.com/orgs/allure-framework/discussions/categories/questions-support

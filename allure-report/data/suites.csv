@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","0","Validate elements at Login Page","chromium","Mon Aug 19 20:53:23 BRT 2024","skipped","Mon Aug 19 20:53:23 BRT 2024","Authentication","specs\login.spec.ts","",""
+"","0","Set user as recruiter","chromium","Mon Aug 19 20:53:23 BRT 2024","skipped","Mon Aug 19 20:53:23 BRT 2024","Home Page Feature","specs\home.spec.ts","",""
+"","0","Validate elements at Recruitment Page","chromium","Mon Aug 19 20:53:23 BRT 2024","skipped","Mon Aug 19 20:53:23 BRT 2024","Recruitment Feature","specs\recruit.spec.ts","",""
+"","26848","Login - Succesfully login","chromium","Mon Aug 19 20:53:23 BRT 2024","passed","Mon Aug 19 20:53:50 BRT 2024","Authentication","specs\login.spec.ts","",""
+"","1","Validate elements at Home Page","chromium","Mon Aug 19 20:53:23 BRT 2024","skipped","Mon Aug 19 20:53:23 BRT 2024","Home Page Feature","specs\home.spec.ts","",""
+"","30017","Add a new candidate at Recruitment Page","chromium","Mon Aug 19 20:53:23 BRT 2024","broken","Mon Aug 19 20:53:53 BRT 2024","Recruitment Feature","specs\recruit.spec.ts","",""
+"","25622","Edit candidate at Recruitment Page","chromium","Mon Aug 19 20:53:53 BRT 2024","passed","Mon Aug 19 20:54:19 BRT 2024","Recruitment Feature","specs\recruit.spec.ts","",""

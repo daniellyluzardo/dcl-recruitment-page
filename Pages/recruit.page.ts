@@ -45,8 +45,7 @@ export class RecruitPage {
         this.email = page.getByPlaceholder('Type here').first();
         this.contactNmbr = page.getByPlaceholder('Type here').nth(1);
         this.resumeButton = page.getByText('Browse');
-        // this.datepicker = page.getByPlaceholder('dd-mm-yyyy');
-        this.datepicker = page.locator('form i').nth(2);
+        this.datepicker = page.getByPlaceholder('yyyy-mm-dd');
         this.todaydate = page.getByText('Today');
         this.notes = page.locator('textarea');
         this.consentCB = page.locator('[type="checkbox"]');
@@ -105,6 +104,9 @@ export class RecruitPage {
     async clickTodayDate() {
         await expect(this.todaydate).toBeVisible();
         await this.todaydate.click();
+    }
+    async selectDate(date: string){
+        await this.datepicker.fill(date);
     }
     async fillNotes(note: string) {
         await expect(this.notes).toBeVisible();
