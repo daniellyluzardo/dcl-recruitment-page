@@ -1,11 +1,13 @@
 # dcl-recruitment-page
-This framework is going to give coverage for different features of the web application of recruitment-page
+This framework is going to give coverage for different features of the web application of recruitment-page.
+
 * Main scenarios covered on this project
 * Login - Succesfully login
 * Validate elements at Login Page
 * Validate elements at Recruitment Page
 * Add a new candidate at Recruitment Page
-* Edit candidate at Recruitment Page
+* Edit candidate at Recruitment Page:
+      * * Im considering, in this scenario, any candidate created by add a new candidate feature, since its necessary to run those independently as sometimes one browser will run in random order, it is difficult to assure that the immediate previous scenario will be edited, to achieve this goal, it would be a E2E test, validating also the API calls before running each scenario. Also Ive noticed that sometimes the candidate that was recently added was not displayed in the search to edit it, so to investigate this and prevent fails, I would have to check on API to see if the candidate was added to the database correctly.
 * Set user as recruiter (TBD since it is not in the scope)
 
 * Project description

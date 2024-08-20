@@ -8,9 +8,9 @@ test.describe('Authentication', () => {
     const login = new LoginPage(page);
     await login.gotoLoginUrl();
     await login.login("Admin", "admin123");
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
     await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(3000);
   });
 
   test('Validate elements at Login Page', async ({ page }) => {

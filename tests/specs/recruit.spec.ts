@@ -25,7 +25,7 @@ test.describe('Recruitment Feature', () => {
 
   });
 
-  test('Add a new candidate at Recruitment Page', async ({ page }) => {
+  test.only('Add a new candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
@@ -57,7 +57,7 @@ test.describe('Recruitment Feature', () => {
 
   });
 
-  test('Edit candidate at Recruitment Page', async ({ page }) => {
+  test.only('Edit candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
@@ -79,15 +79,12 @@ test.describe('Recruitment Feature', () => {
     await page.waitForTimeout(3000);
     await recruitment.validateCandidateSearch(fullname, vacancyQA);
     await recruitment.editCandidate();
-    // await recruitment.fillCandidateName(firstname, midname + Date.now(), lastname + Date.now());
-    // await recruitment.fillCandidateName(firstname, midname, lastname);
-    await expect(page.getByText(vacancyQA).nth(1)).toBeVisible();
-    await page.getByText(vacancyQA).nth(1).click();
-    await recruitment.fillVacancy(vacancySE);
+    await recruitment.fillEmail(email+Date.now());
+    await recruitment.fillContactNmbr("(999)"+Date.now());
     await recruitment.clickDate();
     await recruitment.clickTodayDate();
+    await recruitment.fillNotes("Thank you for the opportunity to be considered for this role.");
     await recruitment.clickSaveButton();
-    await recruitment.clickConfirmEditButton();
     await recruitment.validateSuccessEditMessage();
     await page.waitForTimeout(3000);
     // await page.close();
