@@ -25,7 +25,7 @@ test.describe('Recruitment Feature', () => {
 
   });
 
-  test.only('Add a new candidate at Recruitment Page', async ({ page }) => {
+  test('Add a new candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
@@ -41,14 +41,13 @@ test.describe('Recruitment Feature', () => {
     await recruitment.fillVacancy(vacancyQA);
     await recruitment.fillEmail(email);
     await recruitment.fillContactNmbr(phone);
-    // await recruitment.clickUploadResume();
     // FilePicker
     const fileChooserPromise = page.waitForEvent('filechooser');
     await recruitment.clickUploadResume();
     const fileChooser = await fileChooserPromise;
     await fileChooser.setFiles('tests/utils/resume.docx');
     await page.getByPlaceholder('Enter comma seperated words...').fill("QA, IT, lead");
-    await recruitment.selectDate('2024-07-12');
+    await recruitment.selectDate('2024-12-08');
     await recruitment.fillNotes("Thank you for the opportunity to be considered for this role. I'm excited about the possibility to contribute and grow with your team.");
     // await recruitment.markConsent();
     await recruitment.clickSaveButton();
@@ -58,7 +57,7 @@ test.describe('Recruitment Feature', () => {
 
   });
 
-  test.only('Edit candidate at Recruitment Page', async ({ page }) => {
+  test('Edit candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
@@ -72,14 +71,16 @@ test.describe('Recruitment Feature', () => {
     await page.locator('div').filter({ hasText: /^Vacancy-- Select --$/ }).first().click();
     await recruitment.fillVacancy(vacancyQA);
     await recruitment.searchForCandidate(firstname);
-    await page.getByRole('option', { name: fullname }).first().click();
+    await page.getByRole('option', { name: firstname }).first().click();
     await recruitment.clickSearch();
     await page.waitForTimeout(3000);
     await expect(page.locator('.orangehrm-container')).toBeVisible();
     await page.locator('.orangehrm-container').locator('[type="button"]').first().click();
+    await page.waitForTimeout(3000);
     await recruitment.validateCandidateSearch(fullname, vacancyQA);
     await recruitment.editCandidate();
-    await recruitment.fillCandidateName(firstname + Date.now(), midname + Date.now(), lastname + Date.now());
+    // await recruitment.fillCandidateName(firstname, midname + Date.now(), lastname + Date.now());
+    // await recruitment.fillCandidateName(firstname, midname, lastname);
     await expect(page.getByText(vacancyQA).nth(1)).toBeVisible();
     await page.getByText(vacancyQA).nth(1).click();
     await recruitment.fillVacancy(vacancySE);

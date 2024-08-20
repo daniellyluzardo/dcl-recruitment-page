@@ -45,7 +45,7 @@ export class RecruitPage {
         this.email = page.getByPlaceholder('Type here').first();
         this.contactNmbr = page.getByPlaceholder('Type here').nth(1);
         this.resumeButton = page.getByText('Browse');
-        this.datepicker = page.getByPlaceholder('yyyy-mm-dd');
+        this.datepicker = page.getByPlaceholder('yyyy-dd-mm');
         this.todaydate = page.getByText('Today');
         this.notes = page.locator('textarea');
         this.consentCB = page.locator('[type="checkbox"]');

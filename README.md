@@ -23,12 +23,11 @@ This framework is going to give coverage for different features of the web appli
 ## Project setup
 ---------------------
 ### Pre-requisites: 
+* Install NodeJS
 * Install Playwright
     npm init playwright@latest, mainly choose TypeScript and true to install browsers
 	TypeScript
 	true (npx playwright install)
-* Install NodeJS
-* Install Mocha
 
 # Opening the project
 clone repo on git clone https://github.com/daniellyluzardo/dcl-recruitment-page.git then
