@@ -22,16 +22,16 @@ test.describe('Recruitment Feature', () => {
     await login.login("Admin", "admin123");
     await home.clickRecruitmentMenu();
 
-
   });
 
-  test.skip('Add a new candidate at Recruitment Page', async ({ page }) => {
+  test('Add a new candidate at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
 
     await login.gotoLoginUrl();
     await login.login("Admin", "admin123");
+    await page.waitForTimeout(5000);
     await home.clickRecruitmentMenu();
     await recruitment.clickAddCandidates();
     await recruitment.fillCandidateName(firstname,midname, lastname);
@@ -55,6 +55,7 @@ test.describe('Recruitment Feature', () => {
     await recruitment.clickSaveButton();
     await recruitment.validateSuccessSaveMessage();
     await page.waitForTimeout(3000);
+    // await page.close();
 
   });
 
@@ -93,6 +94,7 @@ test.describe('Recruitment Feature', () => {
     await recruitment.clickConfirmEditButton();
     await recruitment.validateSuccessEditMessage();
     await page.waitForTimeout(3000);
+    // await page.close();
 
   });
 });

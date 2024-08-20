@@ -9,13 +9,13 @@ test.describe('Authentication', () => {
     await login.loginButton.isVisible();
   });
 
-  test.skip('Login - Succesfully login', async ({ page }) => {
+  test('Login - Succesfully login', async ({ page }) => {
     //After succesffully logged in, it validates if dashboard page is displayed
     const login = new LoginPage(page);
     await login.gotoLoginUrl();
     await login.login("Admin","admin123");
+    await page.waitForTimeout(5000);
     await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
-
     await page.waitForTimeout(5000);
 });
 });

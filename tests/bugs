@@ -1,4 +1,4 @@
-it is possible to log in the website as admin with lowercase credentials: admin, admin123
+it is possible to log in the website as admin with lowercase credentials: user: admin, pwd: admin123
 
 **
 On Recruitment page, when admin tries to search for a candidate, being this candidate a recently added one, 
@@ -9,5 +9,6 @@ then the record is displayed and you can select that dropdown.
 **
 
 To change language overall > Admin > Configuration > Localization > Language dropbox > English
+
 **
 To allow user to recruit a candidate > go to Admin > Configuration > Modules > Module Configuration and mark Recruitment Module true and Save

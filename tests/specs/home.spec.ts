@@ -23,6 +23,7 @@ test.describe('Home Page Feature', () => {
       await admin.clickConfigMenu();
       await admin.clickModulesMenu();
       await admin.setRecruitModuleOn();
+      await page.close();
 
     });
 });
