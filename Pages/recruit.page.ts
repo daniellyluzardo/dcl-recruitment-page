@@ -23,6 +23,15 @@ export class RecruitPage {
     readonly clickEdit: Locator;
     readonly header1: Locator;
     readonly confirmButton: Locator;
+    readonly jobTitleHeader: Locator;
+    readonly vacancyHeader: Locator;
+    readonly hiringMngrHeader: Locator;
+    readonly statusHeader: Locator;
+    readonly CandNameHeader: Locator;
+    readonly keywordsHeader: Locator;
+    readonly dateApplicHeader: Locator;
+    readonly methodApplicHeader: Locator;
+    readonly resetButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -36,7 +45,6 @@ export class RecruitPage {
         this.email = page.getByPlaceholder('Type here').first();
         this.contactNmbr = page.getByPlaceholder('Type here').nth(1);
         this.resumeButton = page.getByText('Browse');
-        // this.resumeButton = page.getByRole('button', { name: ' Browse' });
         // this.datepicker = page.getByPlaceholder('dd-mm-yyyy');
         this.datepicker = page.locator('form i').nth(2);
         this.todaydate = page.getByText('Today');
@@ -50,6 +58,15 @@ export class RecruitPage {
         this.header1 = page.getByRole('heading', { name: 'Application Stage' });
         this.confirmButton = page.getByRole('button', { name: 'Yes, Confirm' });
         this.successEditCandMessage = page.getByText('SuccessSuccessfully Updated×');
+        this.jobTitleHeader = page.getByText('Job Title', { exact: true });
+        this.vacancyHeader = page.getByText('Vacancy', { exact: true });
+        this.hiringMngrHeader = page.getByText('Hiring Manager', { exact: true });
+        this.statusHeader = page.getByText('Status', { exact: true });
+        this.CandNameHeader = page.getByText('Candidate Name', { exact: true });
+        this.keywordsHeader = page.getByText('Keywords');
+        this.dateApplicHeader = page.getByText('Date of Application', { exact: true });
+        this.methodApplicHeader = page.getByText('Method of Application', { exact: true });
+        this.resetButton = page.getByRole('button', { name: 'Reset' });
 
 
     }
@@ -70,8 +87,6 @@ export class RecruitPage {
         await this.email.fill(email);
     }
     async fillVacancy(vacancy: string) {
-        // await expect(this.page.getByText('Vacancy-- Select --')).toBeVisible();
-        // await this.page.getByText('Vacancy-- Select --').click();
         await expect(this.page.getByRole('option', { name: vacancy })).toBeVisible();
         await this.page.getByRole('option', { name: vacancy }).click();
     }
@@ -130,5 +145,16 @@ export class RecruitPage {
     async editCandidate() {
         await expect(this.clickEdit).toBeVisible();
         await this.clickEdit.setChecked(true);
+    }
+    async validateRecruitSearchPage() {
+        await expect(this.jobTitleHeader).toBeVisible();
+        await expect(this.vacancyHeader).toBeVisible();
+        await expect(this.hiringMngrHeader).toBeVisible();
+        await expect(this.statusHeader).toBeVisible();
+        await expect(this.CandNameHeader).toBeVisible();
+        await expect(this.keywordsHeader).toBeVisible();
+        await expect(this.dateApplicHeader).toBeVisible();
+        await expect(this.methodApplicHeader).toBeVisible();
+        await expect(this.resetButton).toBeVisible();
     }
 }

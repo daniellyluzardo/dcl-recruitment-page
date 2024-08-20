@@ -1,3 +1,4 @@
+**
 it is possible to log in the website as admin with lowercase credentials: user: admin, pwd: admin123
 
 **
@@ -6,8 +7,8 @@ then go back to Candidates page and search for it in Candidate Name field,
 it will not find in the dropbox and the message 'No records found' is displayed, 
 but if you select the vacancy you previously selected for that record, then search the same candidate name,
 then the record is displayed and you can select that dropdown.
-**
 
+**
 To change language overall > Admin > Configuration > Localization > Language dropbox > English
 
 **

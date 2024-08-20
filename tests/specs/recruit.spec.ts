@@ -5,8 +5,7 @@ import { RecruitPage } from '../../Pages/recruit.page';
 import * as path from 'path';
 
 test.describe('Recruitment Feature', () => {
-  // const firstname = "Jane"
-  const firstname = "juan"
+  const firstname = "Jane"
   const midname = "Doe"
   const lastname = "Smith"
   const email = "email@email.com"
@@ -14,13 +13,15 @@ test.describe('Recruitment Feature', () => {
   const vacancyQA = 'Senior QA Lead'
   const vacancySE = 'Software Engineer'
 
-  test.skip('Validate elements at Recruitment Page', async ({ page }) => {
+  test('Validate elements at Recruitment Page', async ({ page }) => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
+    const recruitment = new RecruitPage(page);
 
     await login.gotoLoginUrl();
     await login.login("Admin", "admin123");
     await home.clickRecruitmentMenu();
+    await recruitment.validateRecruitSearchPage();
 
   });
 
@@ -34,7 +35,7 @@ test.describe('Recruitment Feature', () => {
     await page.waitForTimeout(5000);
     await home.clickRecruitmentMenu();
     await recruitment.clickAddCandidates();
-    await recruitment.fillCandidateName(firstname,midname, lastname);
+    await recruitment.fillCandidateName(firstname, midname, lastname);
     await expect(page.getByText('Vacancy-- Select --')).toBeVisible();
     await page.getByText('Vacancy-- Select --').click();
     await recruitment.fillVacancy(vacancyQA);
@@ -45,7 +46,7 @@ test.describe('Recruitment Feature', () => {
     const fileChooserPromise = page.waitForEvent('filechooser');
     await recruitment.clickUploadResume();
     const fileChooser = await fileChooserPromise;
-    await fileChooser.setFiles(path.join (process.cwd(),  'tests/utils/resume.docx'));
+    await fileChooser.setFiles(path.join(process.cwd(), 'tests/utils/resume.docx'));
     await page.getByPlaceholder('Enter comma seperated words...').fill("QA, IT, lead");
     await recruitment.clickDate();
     await recruitment.clickTodayDate();
@@ -63,7 +64,7 @@ test.describe('Recruitment Feature', () => {
     const login = new LoginPage(page);
     const home = new HomePage(page);
     const recruitment = new RecruitPage(page);
-    const fullname = firstname+" "+midname+" "+lastname
+    const fullname = firstname + " " + midname + " " + lastname
 
     await login.gotoLoginUrl();
     await login.login("Admin", "admin123");
@@ -71,10 +72,6 @@ test.describe('Recruitment Feature', () => {
     await home.clickRecruitmentMenu();
     await expect(page.locator('div').filter({ hasText: /^Vacancy-- Select --$/ }).first()).toBeVisible();
     await page.locator('div').filter({ hasText: /^Vacancy-- Select --$/ }).first().click();
-    // await expect(page.locator('div').filter({ hasText: vacancyQA }).nth(3)).toBeVisible();
-    // await page.locator('div').filter({ hasText: vacancyQA }).nth(3).click();
-    // await expect(page.getByRole('option', { name: vacancyQA })).toBeVisible();
-    // await page.getByRole('option', { name: vacancyQA }).click();
     await recruitment.fillVacancy(vacancyQA);
     await recruitment.searchForCandidate(firstname);
     await page.getByRole('option', { name: fullname }).first().click();
@@ -84,11 +81,9 @@ test.describe('Recruitment Feature', () => {
     await page.locator('.orangehrm-container').locator('[type="button"]').first().click();
     await recruitment.validateCandidateSearch(fullname, vacancyQA);
     await recruitment.editCandidate();
-    await recruitment.fillCandidateName(firstname+Date.now(),midname+Date.now(),lastname+Date.now());
+    await recruitment.fillCandidateName(firstname + Date.now(), midname + Date.now(), lastname + Date.now());
     await expect(page.getByText(vacancyQA).nth(1)).toBeVisible();
     await page.getByText(vacancyQA).nth(1).click();
-    // await expect(page.locator('div').filter({ hasText: vacancyQA }).nth(3)).toBeVisible();
-    // await page.locator('div').filter({ hasText: vacancyQA }).nth(3).click();
     await recruitment.fillVacancy(vacancySE);
     await recruitment.clickSaveButton();
     await recruitment.clickConfirmEditButton();
